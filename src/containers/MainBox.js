@@ -4,6 +4,28 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  state = {currentPage:<Profile/>}
+
+  toggleMenu = (e) => {
+    let currentPage
+    switch (e.target.id) {
+      case "profile":
+        currentPage = <Profile/>
+        break;
+      case "photo":
+        currentPage = <Photos/>
+        break;
+      case "cocktail":
+        currentPage = <Cocktails/>
+        break;
+      case "pokemon":
+        currentPage = <Pokemon/>
+        break;
+        default:
+        currentPage = <Profile/>
+    }
+    this.setState({currentPage})
+  }
 
   render() {
 
@@ -13,12 +35,12 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+   
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar toggleMenu={this.toggleMenu}/>
+        {this.state.currentPage}
       </div>
     )
   }
